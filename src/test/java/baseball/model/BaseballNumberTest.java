@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
 
-public class BaseballNumberTest {
+class BaseballNumberTest {
 
     @Test
     void 숫자를_생성() {
