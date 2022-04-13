@@ -7,6 +7,7 @@ import java.util.Set;
 
 public class Baseball {
     private BaseballNumber baseballNumber;
+    private BaseballCounter baseballCounter;
 
     private Baseball() {
         baseballNumber = BaseballNumber.create();
@@ -16,9 +17,18 @@ public class Baseball {
         return new Baseball();
     }
 
-    public void validate(String number) {
-        checkFormatNumber(number);
-        checkDuplicateNumber(number);
+    public void validate(String inputNumber) {
+        checkFormatNumber(inputNumber);
+        checkDuplicateNumber(inputNumber);
+    }
+
+    public void count(String inputNumber) {
+        baseballCounter = BaseballCounter.create(baseballNumber.getNumber());
+        baseballCounter.count(inputNumber);
+    }
+
+    public BaseballCounter getResult() {
+        return baseballCounter;
     }
 
     private void checkDuplicateNumber(String number) {
