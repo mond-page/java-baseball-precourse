@@ -14,13 +14,23 @@ public class GameMachine {
 
     public void start() {
         baseball = Baseball.start();
-        monitor.printInputNumber();
         inputNumber();
     }
 
     private void inputNumber() {
-        String inputNumber = Console.readLine();
-        validateInputNumber(inputNumber);
+        while (isRunning()) {
+            monitor.printInputNumber();
+            String inputNumber = Console.readLine();
+            validateInputNumber(inputNumber);
+            countInputNumber(inputNumber);
+        }
+    }
+
+    private boolean isRunning() {
+        return !baseball.isAnswer();
+    }
+
+    private void countInputNumber(String inputNumber) {
         baseball.count(inputNumber);
         monitor.printCountResult(baseball.getResult());
     }

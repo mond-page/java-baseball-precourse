@@ -31,6 +31,10 @@ public class Baseball {
         return baseballCounter;
     }
 
+    public boolean isAnswer() {
+        return baseballCounter != null && baseballCounter.getStrike() == BaseballOption.DIGIT_NUMBER;
+    }
+
     private void checkDuplicateNumber(String number) {
         Set<Integer> numberSet = new HashSet<>();
         for (char digitNumber : number.toCharArray()) {
