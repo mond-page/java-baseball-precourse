@@ -29,7 +29,9 @@ class BaseballCounterTest {
         assertAll(
                 () -> 두_배열_스트라이크_만장일치(computerNumber.toCharArray(), userNumber.toCharArray()),
                 () -> assertThat(counter.getStrike()).isEqualTo(computerNumber.length()),
-                () -> assertThat(counter.getBall()).isZero()
+                () -> assertThat(counter.getBall()).isZero(),
+                () -> assertThat(counter.isStrike()).isTrue(),
+                () -> assertThat(counter.isBall()).isFalse()
         );
     }
 
@@ -46,7 +48,9 @@ class BaseballCounterTest {
         assertAll(
                 () -> 두_배열_볼_만장일치(computerNumber.toCharArray(), userNumber.toCharArray()),
                 () -> assertThat(counter.getBall()).isEqualTo(computerNumber.length()),
-                () -> assertThat(counter.getStrike()).isZero()
+                () -> assertThat(counter.getStrike()).isZero(),
+                () -> assertThat(counter.isStrike()).isFalse(),
+                () -> assertThat(counter.isBall()).isTrue()
         );
     }
 
@@ -69,7 +73,9 @@ class BaseballCounterTest {
 
         assertAll(
                 () -> assertThat(counter.getStrike()).isPositive(),
-                () -> assertThat(counter.getBall()).isZero()
+                () -> assertThat(counter.getBall()).isZero(),
+                () -> assertThat(counter.isStrike()).isTrue(),
+                () -> assertThat(counter.isBall()).isFalse()
         );
     }
 
@@ -81,7 +87,9 @@ class BaseballCounterTest {
 
         assertAll(
                 () -> assertThat(counter.getBall()).isPositive(),
-                () -> assertThat(counter.getStrike()).isZero()
+                () -> assertThat(counter.getStrike()).isZero(),
+                () -> assertThat(counter.isStrike()).isFalse(),
+                () -> assertThat(counter.isBall()).isTrue()
         );
     }
 
@@ -93,7 +101,9 @@ class BaseballCounterTest {
 
         assertAll(
                 () -> assertThat(counter.getStrike()).isPositive(),
-                () -> assertThat(counter.getBall()).isPositive()
+                () -> assertThat(counter.getBall()).isPositive(),
+                () -> assertThat(counter.isStrike()).isTrue(),
+                () -> assertThat(counter.isBall()).isTrue()
         );
     }
 
@@ -105,7 +115,9 @@ class BaseballCounterTest {
 
         assertAll(
                 () -> assertThat(counter.getStrike()).isZero(),
-                () -> assertThat(counter.getBall()).isZero()
+                () -> assertThat(counter.getBall()).isZero(),
+                () -> assertThat(counter.isStrike()).isFalse(),
+                () -> assertThat(counter.isBall()).isFalse()
         );
     }
 

@@ -26,6 +26,14 @@ public class BaseballCounter {
         return ball;
     }
 
+    public boolean isStrike() {
+        return strike > 0;
+    }
+
+    public boolean isBall() {
+        return ball > 0;
+    }
+
     private void countStrike(String userNumber) {
         for (int idx = 0; idx < userNumber.length(); idx++) {
             countStrikeNumberIndex(idx, userNumber.charAt(idx));

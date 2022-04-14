@@ -38,4 +38,13 @@ class BaseballTest {
                 .isThrownBy(() -> baseball.validate(duplicateNumber))
                 .withMessage(BaseballMessage.DUPLICATE_DIGIT_NUMBER);
     }
+
+    @Test
+    void 입력받은_수를_계산_후_결과반환() {
+        Baseball baseball = Baseball.start();
+        String inputNumber = "152";
+        baseball.count(inputNumber);
+
+        assertThat(baseball.getResult()).isNotNull();
+    }
 }

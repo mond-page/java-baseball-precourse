@@ -22,6 +22,7 @@ public class GameMachine {
         String inputNumber = Console.readLine();
         validateInputNumber(inputNumber);
         baseball.count(inputNumber);
+        monitor.printCountResult(baseball.getResult());
     }
 
     private void validateInputNumber(String inputNumber) {
