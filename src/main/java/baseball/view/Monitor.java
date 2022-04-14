@@ -27,12 +27,13 @@ public class Monitor {
     }
 
     public void printVictory() {
-        message = String.format(GAME_VICTORY_MESSAGE, BaseballOption.DIGIT_NUMBER);
+        message = String.format(GAME_VICTORY_MESSAGE, BaseballOption.DIGIT_NUMBER_LENGTH);
         printMessage(message);
     }
 
     public void printGameChoice() {
-        message = String.format(GAME_CHOICE_MESSAGE, GameMachineState.RESTART.getCode(), GameMachineState.TERMINATE.getCode());
+        message = String.format(GAME_CHOICE_MESSAGE, GameMachineState.RESTART.getCode(),
+                GameMachineState.TERMINATE.getCode());
         printMessage(message);
     }
 

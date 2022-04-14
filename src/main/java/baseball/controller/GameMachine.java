@@ -49,9 +49,10 @@ public class GameMachine {
     }
 
     private void validateGameStateNumber(String gameStateNumber) {
-        String regex = String.format("(%d|%d)", GameMachineState.RESTART.getCode(), GameMachineState.TERMINATE.getCode());
+        String restartCode = String.valueOf(GameMachineState.RESTART.getCode());
+        String terminateCode = String.valueOf(GameMachineState.TERMINATE.getCode());
 
-        if (!gameStateNumber.matches(regex)) {
+        if (!restartCode.matches(gameStateNumber) && !terminateCode.matches(gameStateNumber)) {
             throw new IllegalArgumentException(GameMachineMessage.INVALID_NUMBER_FORMAT);
         }
     }

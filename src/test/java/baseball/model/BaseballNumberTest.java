@@ -32,7 +32,7 @@ class BaseballNumberTest {
     void 자릿수_일치_확인() {
         BaseballNumber number = BaseballNumber.create();
 
-        assertThat(number.getNumber()).containsPattern("\\d{" + BaseballOption.DIGIT_NUMBER + "}");
+        assertThat(number.getNumber()).containsPattern("\\d{" + BaseballOption.DIGIT_NUMBER_LENGTH + "}");
     }
 
     @Test
@@ -52,6 +52,6 @@ class BaseballNumberTest {
             numberSet.add((int) digitNumber);
         }
 
-        assertThat(numberSet).hasSize(BaseballOption.DIGIT_NUMBER);
+        assertThat(numberSet).hasSize(BaseballOption.DIGIT_NUMBER_LENGTH);
     }
 }

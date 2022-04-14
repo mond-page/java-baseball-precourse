@@ -27,7 +27,7 @@ public class Baseball {
     }
 
     public boolean isAnswer() {
-        return baseballCounter != null && baseballCounter.getStrike() == BaseballOption.DIGIT_NUMBER;
+        return baseballCounter != null && baseballCounter.isAllStrike();
     }
 
     public void validate(String inputNumber) {
@@ -47,7 +47,8 @@ public class Baseball {
     }
 
     private void checkFormatNumber(String number) {
-        if (!number.matches("[1-9]{" + BaseballOption.DIGIT_NUMBER + "}")) {
+        String regex = String.format("[1-9]{%d}", BaseballOption.DIGIT_NUMBER_LENGTH);
+        if (!number.matches(regex)) {
             throw new IllegalArgumentException(BaseballMessage.INVALID_NUMBER_FORMAT);
         }
     }

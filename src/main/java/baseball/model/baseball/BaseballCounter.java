@@ -1,5 +1,7 @@
 package baseball.model.baseball;
 
+import baseball.constants.baseball.BaseballOption;
+
 public class BaseballCounter {
     private final String computerNumber;
     private int strike;
@@ -56,5 +58,9 @@ public class BaseballCounter {
 
     public boolean isBall() {
         return ball > 0;
+    }
+
+    public boolean isAllStrike() {
+        return strike == BaseballOption.DIGIT_NUMBER_LENGTH;
     }
 }

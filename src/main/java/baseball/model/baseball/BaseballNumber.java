@@ -21,7 +21,7 @@ public class BaseballNumber {
 
     private void generateNumber() {
         numbers = new LinkedList<>();
-        while (numbers.size() < BaseballOption.DIGIT_NUMBER) {
+        while (numbers.size() < BaseballOption.DIGIT_NUMBER_LENGTH) {
             int number = pickNumber();
             validate(number);
             numbers.add(number);
