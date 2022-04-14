@@ -18,22 +18,6 @@ public class BaseballCounter {
         countBall(userNumber);
     }
 
-    public int getStrike() {
-        return strike;
-    }
-
-    public int getBall() {
-        return ball;
-    }
-
-    public boolean isStrike() {
-        return strike > 0;
-    }
-
-    public boolean isBall() {
-        return ball > 0;
-    }
-
     private void countStrike(String userNumber) {
         for (int idx = 0; idx < userNumber.length(); idx++) {
             countStrikeNumberIndex(idx, userNumber.charAt(idx));
@@ -56,5 +40,21 @@ public class BaseballCounter {
         if (computerNumber.contains(String.valueOf(digitNumber)) && computerNumber.charAt(index) != digitNumber) {
             ball += 1;
         }
+    }
+
+    public int getStrike() {
+        return strike;
+    }
+
+    public int getBall() {
+        return ball;
+    }
+
+    public boolean isStrike() {
+        return strike > 0;
+    }
+
+    public boolean isBall() {
+        return ball > 0;
     }
 }

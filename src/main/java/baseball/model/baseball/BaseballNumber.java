@@ -19,12 +19,6 @@ public class BaseballNumber {
         return new BaseballNumber();
     }
 
-    public String getNumber() {
-        StringBuilder builder = new StringBuilder();
-        numbers.forEach(builder::append);
-        return builder.toString();
-    }
-
     private void generateNumber() {
         numbers = new LinkedList<>();
         while (numbers.size() < BaseballOption.DIGIT_NUMBER) {
@@ -43,11 +37,17 @@ public class BaseballNumber {
         return number;
     }
 
-    public static void validate(int number) {
+    public void validate(int number) {
         checkOutOfBound(number);
     }
 
-    private static void checkOutOfBound(int number) {
+    public String getNumber() {
+        StringBuilder builder = new StringBuilder();
+        numbers.forEach(builder::append);
+        return builder.toString();
+    }
+
+    private void checkOutOfBound(int number) {
         if (number > MAX_NUMBER || number < MIN_NUMBER) {
             throw new IllegalArgumentException(BaseballMessage.OUT_OF_BOUND_NUMBER);
         }

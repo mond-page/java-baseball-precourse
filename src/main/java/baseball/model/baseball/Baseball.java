@@ -17,11 +17,6 @@ public class Baseball {
         return new Baseball();
     }
 
-    public void validate(String inputNumber) {
-        checkFormatNumber(inputNumber);
-        checkDuplicateNumber(inputNumber);
-    }
-
     public void count(String inputNumber) {
         baseballCounter = BaseballCounter.create(baseballNumber.getNumber());
         baseballCounter.count(inputNumber);
@@ -33,6 +28,11 @@ public class Baseball {
 
     public boolean isAnswer() {
         return baseballCounter != null && baseballCounter.getStrike() == BaseballOption.DIGIT_NUMBER;
+    }
+
+    public void validate(String inputNumber) {
+        checkFormatNumber(inputNumber);
+        checkDuplicateNumber(inputNumber);
     }
 
     private void checkDuplicateNumber(String number) {

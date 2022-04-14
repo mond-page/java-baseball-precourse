@@ -3,6 +3,7 @@ package study;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -39,7 +40,7 @@ class StringTest {
     void 문자열에서_문자를_가져오는_경우() {
         String str = "abc";
 
-        Assertions.assertAll(str,
+        assertAll(str,
                 () -> assertThat(str.charAt(0)).isEqualTo('a'),
                 () -> assertThat(str.charAt(1)).isEqualTo('b'),
                 () -> assertThat(str.charAt(2)).isEqualTo('c')

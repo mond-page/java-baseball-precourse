@@ -9,8 +9,10 @@ public class Monitor {
     private static final String RESULT_NOTHING_MESSAGE = "낫싱";
     private static final String INPUT_NUMBER_MESSAGE = "숫자를 입력해 주세요.";
 
+    private String message;
+
     public void printInputNumber() {
-        System.out.println(INPUT_NUMBER_MESSAGE);
+        printMessage(INPUT_NUMBER_MESSAGE);
     }
 
     public void printCountResult(BaseballCounter counter) {
@@ -20,27 +22,35 @@ public class Monitor {
         printNothing(counter.isStrike(), counter.isBall());
     }
 
-    private void printNothing(boolean isStrike, boolean isBall) {
-        if (!isStrike && !isBall) {
-            System.out.println(RESULT_NOTHING_MESSAGE);
+    private void printStrike(boolean isStrike, boolean isBall, int numberOfStrike) {
+        if (isStrike && !isBall) {
+            message = String.format(RESULT_STRIKE_MESSAGE, numberOfStrike);
+            printMessage(message);
         }
     }
 
     private void printBall(boolean isStrike, boolean isBall, int numberOfBall) {
         if (!isStrike && isBall) {
-            System.out.printf(RESULT_BALL_MESSAGE, numberOfBall);
-        }
-    }
-
-    private void printStrike(boolean isStrike, boolean isBall, int numberOfStrike) {
-        if (isStrike && !isBall) {
-            System.out.printf(RESULT_STRIKE_MESSAGE, numberOfStrike);
+            message = String.format(RESULT_BALL_MESSAGE, numberOfBall);
+            printMessage(message);
         }
     }
 
     private void printStrikeAndBall(boolean isStrike, boolean isBall, int numberOfStrike, int numberOfBall) {
         if (isStrike && isBall) {
-            System.out.printf(RESULT_STRIKE_AND_BALL_MESSAGE, numberOfStrike, numberOfBall);
+            message = String.format(RESULT_STRIKE_AND_BALL_MESSAGE, numberOfStrike, numberOfBall);
+            printMessage(message);
         }
+    }
+
+    private void printNothing(boolean isStrike, boolean isBall) {
+        if (!isStrike && !isBall) {
+            message = RESULT_NOTHING_MESSAGE;
+            printMessage(message);
+        }
+    }
+
+    private void printMessage(String message) {
+        System.out.println(message);
     }
 }

@@ -26,10 +26,6 @@ public class GameMachine {
         }
     }
 
-    private boolean isRunning() {
-        return !baseball.isAnswer();
-    }
-
     private void countInputNumber(String inputNumber) {
         baseball.count(inputNumber);
         monitor.printCountResult(baseball.getResult());
@@ -37,5 +33,9 @@ public class GameMachine {
 
     private void validateInputNumber(String inputNumber) {
         baseball.validate(inputNumber);
+    }
+
+    private boolean isRunning() {
+        return !baseball.isAnswer();
     }
 }
