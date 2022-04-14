@@ -30,12 +30,13 @@ public class GameMachine {
     }
 
     private void continueGame() {
-        monitor.printContinueGame();
+        monitor.printGameChoice();
         String gameStateNumber = Console.readLine();
         validateGameStateNumber(gameStateNumber);
         if (Integer.parseInt(gameStateNumber) == GameState.RESTART.getCode()) {
             start();
         }
+        monitor.printGameEnd();
     }
 
     private void countInputNumber(String inputNumber) {
