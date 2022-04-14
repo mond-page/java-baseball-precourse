@@ -1,6 +1,8 @@
 package baseball.controller;
 
 import baseball.model.baseball.Baseball;
+import baseball.model.gamemachine.constants.GameMessage;
+import baseball.model.gamemachine.constants.GameState;
 import baseball.view.Monitor;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -24,6 +26,16 @@ public class GameMachine {
             validateInputNumber(inputNumber);
             countInputNumber(inputNumber);
         }
+        continueGame();
+    }
+
+    private void continueGame() {
+        monitor.printContinueGame();
+        String gameStateNumber = Console.readLine();
+        validateGameStateNumber(gameStateNumber);
+        if (Integer.parseInt(gameStateNumber) == GameState.RESTART.getCode()) {
+            start();
+        }
     }
 
     private void countInputNumber(String inputNumber) {
@@ -33,6 +45,14 @@ public class GameMachine {
 
     private void validateInputNumber(String inputNumber) {
         baseball.validate(inputNumber);
+    }
+
+    private void validateGameStateNumber(String gameStateNumber) {
+        String regex = String.format("(%d|%d)", GameState.RESTART.getCode(), GameState.TERMINATE.getCode());
+
+        if (!gameStateNumber.matches(regex)) {
+            throw new IllegalArgumentException(GameMessage.INVALID_NUMBER_FORMAT);
+        }
     }
 
     private boolean isRunning() {
