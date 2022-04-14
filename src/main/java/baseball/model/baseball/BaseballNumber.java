@@ -1,7 +1,7 @@
 package baseball.model.baseball;
 
-import baseball.model.baseball.constants.BaseballMessage;
-import baseball.model.baseball.constants.BaseballOption;
+import baseball.constants.baseball.BaseballMessage;
+import baseball.constants.baseball.BaseballOption;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.LinkedList;
 import java.util.List;

@@ -1,12 +1,12 @@
-package baseball.model.gamemachine.constants;
+package baseball.constants.gamemachine;
 
-public enum GameState {
+public enum GameMachineState {
     RESTART(1),
     TERMINATE(2);
 
     private int code;
 
-    GameState(int code) {
+    GameMachineState(int code) {
         this.code = code;
     }
 

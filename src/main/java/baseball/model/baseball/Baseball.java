@@ -1,7 +1,7 @@
 package baseball.model.baseball;
 
-import baseball.model.baseball.constants.BaseballMessage;
-import baseball.model.baseball.constants.BaseballOption;
+import baseball.constants.baseball.BaseballMessage;
+import baseball.constants.baseball.BaseballOption;
 import java.util.HashSet;
 import java.util.Set;
 

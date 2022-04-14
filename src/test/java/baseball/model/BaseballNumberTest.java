@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import baseball.model.baseball.BaseballNumber;
-import baseball.model.baseball.constants.BaseballOption;
+import baseball.constants.baseball.BaseballOption;
 import java.util.HashSet;
 import java.util.Set;
 import org.junit.jupiter.api.Test;

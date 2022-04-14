@@ -1,7 +1,7 @@
 package baseball.view;
 
 import baseball.model.baseball.BaseballCounter;
-import baseball.model.gamemachine.constants.GameState;
+import baseball.constants.gamemachine.GameMachineState;
 
 public class Monitor {
     private static final String RESULT_BALL_AND_STRIKE_MESSAGE = "%d볼 %d스트라이크";
@@ -26,7 +26,7 @@ public class Monitor {
     }
 
     public void printGameChoice() {
-        message = String.format(GAME_CHOICE_MESSAGE, GameState.RESTART.getCode(), GameState.TERMINATE.getCode());
+        message = String.format(GAME_CHOICE_MESSAGE, GameMachineState.RESTART.getCode(), GameMachineState.TERMINATE.getCode());
         printMessage(message);
     }
 

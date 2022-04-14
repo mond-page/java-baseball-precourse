@@ -1,4 +1,4 @@
-package baseball.model.baseball.constants;
+package baseball.constants.baseball;
 
 public final class BaseballMessage {
     public static final String DUPLICATE_DIGIT_NUMBER = "중복된 숫자가 존재합니다.";
