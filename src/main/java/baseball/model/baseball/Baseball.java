@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Baseball {
-    private BaseballNumber baseballNumber;
+    private final BaseballNumber baseballNumber;
     private BaseballCounter baseballCounter;
 
     private Baseball() {

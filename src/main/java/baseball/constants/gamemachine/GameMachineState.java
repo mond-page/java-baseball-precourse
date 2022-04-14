@@ -4,7 +4,7 @@ public enum GameMachineState {
     RESTART(1),
     TERMINATE(2);
 
-    private int code;
+    private final int code;
 
     GameMachineState(int code) {
         this.code = code;
