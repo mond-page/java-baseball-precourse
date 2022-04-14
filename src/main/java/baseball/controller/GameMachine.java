@@ -1,8 +1,8 @@
 package baseball.controller;
 
-import baseball.model.baseball.Baseball;
 import baseball.constants.gamemachine.GameMachineMessage;
 import baseball.constants.gamemachine.GameMachineState;
+import baseball.model.baseball.Baseball;
 import baseball.view.Monitor;
 import camp.nextstep.edu.missionutils.Console;
 
@@ -34,11 +34,9 @@ public class GameMachine {
         monitor.printGameChoice();
         String gameStateNumber = Console.readLine();
         validateGameStateNumber(gameStateNumber);
-        if (Integer.parseInt(gameStateNumber) == GameMachineState.TERMINATE.getCode()) {
-            monitor.printGameEnd();
-            return;
+        if (Integer.parseInt(gameStateNumber) == GameMachineState.RESTART.getCode()) {
+            start();
         }
-        start();
     }
 
     private void countInputNumber(String inputNumber) {
