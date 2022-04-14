@@ -26,6 +26,7 @@ public class GameMachine {
             validateInputNumber(inputNumber);
             countInputNumber(inputNumber);
         }
+        monitor.printVictory();
         continueGame();
     }
 
