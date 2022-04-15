@@ -10,6 +10,7 @@ public class Baseball {
     private BaseballCounter baseballCounter;
 
     private Baseball() {
+        validateDigitNumberLength();
         baseballNumber = BaseballNumber.create();
     }
 
@@ -50,6 +51,12 @@ public class Baseball {
         String regex = String.format("[1-9]{%d}", BaseballOption.DIGIT_NUMBER_LENGTH);
         if (!number.matches(regex)) {
             throw new IllegalArgumentException(BaseballMessage.INVALID_NUMBER_FORMAT);
+        }
+    }
+
+    private void validateDigitNumberLength() {
+        if (BaseballOption.DIGIT_NUMBER_LENGTH > 9 || BaseballOption.DIGIT_NUMBER_LENGTH < 0) {
+            throw new IllegalArgumentException(BaseballMessage.INVALID_DIGIT_NUMBER_LENGTH);
         }
     }
 }
