@@ -1,6 +1,5 @@
 package baseball.model.baseball;
 
-import baseball.constants.baseball.BaseballMessage;
 import baseball.constants.baseball.BaseballOption;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.LinkedList;
@@ -23,7 +22,6 @@ public class BaseballNumber {
         numbers = new LinkedList<>();
         while (numbers.size() < BaseballOption.DIGIT_NUMBER_LENGTH) {
             int number = pickNumber();
-            validate(number);
             numbers.add(number);
         }
     }
@@ -32,13 +30,13 @@ public class BaseballNumber {
         int number;
         do {
             number = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
-        } while (numbers.contains(number));
+        } while (validate(number));
 
         return number;
     }
 
-    public void validate(int number) {
-        checkOutOfBound(number);
+    public boolean validate(int number) {
+        return isDuplicateNumber(number) || isOutOfBoundNumber(number);
     }
 
     public String getNumber() {
@@ -47,9 +45,11 @@ public class BaseballNumber {
         return builder.toString();
     }
 
-    private void checkOutOfBound(int number) {
-        if (number > MAX_NUMBER || number < MIN_NUMBER) {
-            throw new IllegalArgumentException(BaseballMessage.OUT_OF_BOUND_NUMBER);
-        }
+    private boolean isDuplicateNumber(int number) {
+        return numbers.contains(number);
+    }
+
+    private boolean isOutOfBoundNumber(int number) {
+        return number > MAX_NUMBER || number < MIN_NUMBER;
     }
 }
