@@ -2,8 +2,6 @@ package baseball.model.baseball;
 
 import baseball.constants.baseball.BaseballMessage;
 import baseball.constants.baseball.BaseballOption;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Baseball {
     private final BaseballNumber baseballNumber;
@@ -32,26 +30,7 @@ public class Baseball {
     }
 
     public void validate(String inputNumber) {
-        checkFormatNumber(inputNumber);
-        checkDuplicateNumber(inputNumber);
-    }
-
-    private void checkDuplicateNumber(String number) {
-        Set<Integer> numberSet = new HashSet<>();
-        for (char digitNumber : number.toCharArray()) {
-            numberSet.add((int) digitNumber);
-        }
-
-        if (number.length() != numberSet.size()) {
-            throw new IllegalArgumentException(BaseballMessage.DUPLICATE_DIGIT_NUMBER);
-        }
-    }
-
-    private void checkFormatNumber(String number) {
-        String regex = String.format("[1-9]{%d}", BaseballOption.DIGIT_NUMBER_LENGTH);
-        if (!number.matches(regex)) {
-            throw new IllegalArgumentException(BaseballMessage.INVALID_NUMBER_FORMAT);
-        }
+        baseballNumber.validate(inputNumber);
     }
 
     private void validateDigitNumberLength() {
