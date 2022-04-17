@@ -28,6 +28,15 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @Test
+    void 정답_후_올바르지_않는_값을_입력() {
+        assertRandomNumberInRangeTest(() ->
+                        assertThatThrownBy(() -> runException("123", "3"))
+                                .isInstanceOf(IllegalArgumentException.class),
+                1, 2, 3
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
