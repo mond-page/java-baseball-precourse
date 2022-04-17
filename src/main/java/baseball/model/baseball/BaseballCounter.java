@@ -1,45 +1,46 @@
 package baseball.model.baseball;
 
 import baseball.constants.baseball.BaseballOption;
+import java.util.List;
 
 public class BaseballCounter {
-    private final String computerNumber;
+    private final List<Integer> computerNumber;
     private int strike;
     private int ball;
 
-    private BaseballCounter(String computerNumber) {
+    private BaseballCounter(List<Integer> computerNumber) {
         this.computerNumber = computerNumber;
     }
 
-    public static BaseballCounter create(String computerNumber) {
+    public static BaseballCounter create(List<Integer> computerNumber) {
         return new BaseballCounter(computerNumber);
     }
 
-    public void count(String userNumber) {
+    public void count(List<Integer> userNumber) {
         countStrike(userNumber);
         countBall(userNumber);
     }
 
-    private void countStrike(String userNumber) {
-        for (int idx = 0; idx < userNumber.length(); idx++) {
-            countStrikeNumberIndex(idx, userNumber.charAt(idx));
+    private void countStrike(List<Integer> userNumber) {
+        for (int idx = 0; idx < userNumber.size(); idx++) {
+            countStrikeNumberIndex(idx, userNumber.get(idx));
         }
     }
 
-    private void countStrikeNumberIndex(int index, char digitNumber) {
-        if (computerNumber.charAt(index) == digitNumber) {
+    private void countStrikeNumberIndex(int index, int digitNumber) {
+        if (computerNumber.get(index) == digitNumber) {
             strike += 1;
         }
     }
 
-    private void countBall(String userNumber) {
-        for (int idx = 0; idx < userNumber.length(); idx++) {
-            countBallNumberIndex(idx, userNumber.charAt(idx));
+    private void countBall(List<Integer> userNumber) {
+        for (int idx = 0; idx < userNumber.size(); idx++) {
+            countBallNumberIndex(idx, userNumber.get(idx));
         }
     }
 
-    private void countBallNumberIndex(int index, char digitNumber) {
-        if (computerNumber.contains(String.valueOf(digitNumber)) && computerNumber.charAt(index) != digitNumber) {
+    private void countBallNumberIndex(int index, int digitNumber) {
+        if (computerNumber.contains(digitNumber) && computerNumber.get(index) != digitNumber) {
             ball += 1;
         }
     }

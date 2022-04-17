@@ -2,13 +2,16 @@ package baseball.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import baseball.model.baseball.BaseballCounter;
 import baseball.model.baseball.BaseballNumber;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class BaseballCounterTest {
 
@@ -21,13 +24,13 @@ class BaseballCounterTest {
     }
 
     @ParameterizedTest(name = "컴퓨터의 숫자({0})과 유저의 숫자({1}) 모두 스트라이크")
-    @CsvSource(value = {"152:152:3", "9184:9184:4", "491:491:3"}, delimiter = ':')
-    void 결과가_모두_스트라이크만_있는_경우(String computerNumber, String userNumber, int strikeCount) {
+    @MethodSource("결과가_모두_스트라이크만_있는_경우_파라미터")
+    void 결과가_모두_스트라이크만_있는_경우(List<Integer> computerNumber, List<Integer> userNumber, int strikeCount) {
         BaseballCounter counter = BaseballCounter.create(computerNumber);
         counter.count(userNumber);
 
         assertAll(
-                () -> 두_배열_스트라이크_만장일치(computerNumber.toCharArray(), userNumber.toCharArray()),
+                () -> assertThat(computerNumber).isEqualTo(userNumber),
                 () -> assertThat(counter.getStrike()).isEqualTo(strikeCount),
                 () -> assertThat(counter.getBall()).isZero(),
                 () -> assertThat(counter.isStrike()).isTrue(),
@@ -35,18 +38,22 @@ class BaseballCounterTest {
         );
     }
 
-    private void 두_배열_스트라이크_만장일치(char[] computerNumberArray, char[] userNumberArray) {
-        assertArrayEquals(computerNumberArray, userNumberArray);
+    private static Stream<Arguments> 결과가_모두_스트라이크만_있는_경우_파라미터() {
+        return Stream.of(
+                Arguments.of(Arrays.asList(1, 5, 2), Arrays.asList(1, 5, 2), 3),
+                Arguments.of(Arrays.asList(9, 1, 8, 4), Arrays.asList(9, 1, 8, 4), 4),
+                Arguments.of(Arrays.asList(4, 9, 1), Arrays.asList(4, 9, 1), 3)
+        );
     }
 
     @ParameterizedTest(name = "컴퓨터의 숫자({0})과 유저의 숫자({1}) 모두 볼")
-    @CsvSource(value = {"152:215:3", "9184:1849:4", "491:149:3"}, delimiter = ':')
-    void 결과가_모두_볼만_있는_경우(String computerNumber, String userNumber, int ballCount) {
+    @MethodSource("결과가_모두_볼만_있는_경우_파라미터")
+    void 결과가_모두_볼만_있는_경우(List<Integer> computerNumber, List<Integer> userNumber, int ballCount) {
         BaseballCounter counter = BaseballCounter.create(computerNumber);
         counter.count(userNumber);
 
         assertAll(
-                () -> 두_배열_볼_만장일치(computerNumber.toCharArray(), userNumber.toCharArray()),
+                () -> assertThat(computerNumber).isNotEqualTo(userNumber),
                 () -> assertThat(counter.getBall()).isEqualTo(ballCount),
                 () -> assertThat(counter.getStrike()).isZero(),
                 () -> assertThat(counter.isStrike()).isFalse(),
@@ -54,20 +61,17 @@ class BaseballCounterTest {
         );
     }
 
-    private void 두_배열_볼_만장일치(char[] computerNumberArray, char[] userNumberArray) {
-        for (int idx = 0; idx < computerNumberArray.length; idx++) {
-            int innerIdx = idx;
-
-            assertAll(
-                    () -> assertThat(computerNumberArray[innerIdx]).isNotEqualTo(userNumberArray[innerIdx]),
-                    () -> assertThat(computerNumberArray).contains(userNumberArray[innerIdx])
-            );
-        }
+    private static Stream<Arguments> 결과가_모두_볼만_있는_경우_파라미터() {
+        return Stream.of(
+                Arguments.of(Arrays.asList(1, 5, 2), Arrays.asList(2, 1, 5), 3),
+                Arguments.of(Arrays.asList(9, 1, 8, 4), Arrays.asList(1, 8, 4, 9), 4),
+                Arguments.of(Arrays.asList(4, 9, 1), Arrays.asList(1, 4, 9), 3)
+        );
     }
 
     @ParameterizedTest(name = "컴퓨터의 숫자({0})과 유저의 숫자({1}) 일부만 스트라이크")
-    @CsvSource(value = {"152:196:1", "9184:6127:1", "491:498:2"}, delimiter = ':')
-    void 결과가_스트라이크가_일부만_있는_경우(String computerNumber, String userNumber, int strikeCount) {
+    @MethodSource("결과가_스트라이크_일부만_있는_경우_파라미터")
+    void 결과가_스트라이크_일부만_있는_경우(List<Integer> computerNumber, List<Integer> userNumber, int strikeCount) {
         BaseballCounter counter = BaseballCounter.create(computerNumber);
         counter.count(userNumber);
 
@@ -76,12 +80,20 @@ class BaseballCounterTest {
                 () -> assertThat(counter.getBall()).isZero(),
                 () -> assertThat(counter.isStrike()).isTrue(),
                 () -> assertThat(counter.isBall()).isFalse()
+        );
+    }
+
+    private static Stream<Arguments> 결과가_스트라이크_일부만_있는_경우_파라미터() {
+        return Stream.of(
+                Arguments.of(Arrays.asList(1, 5, 2), Arrays.asList(1, 9, 6), 1),
+                Arguments.of(Arrays.asList(9, 1, 8, 4), Arrays.asList(6, 1, 2, 7), 1),
+                Arguments.of(Arrays.asList(4, 9, 1), Arrays.asList(4, 9, 8), 2)
         );
     }
 
     @ParameterizedTest(name = "컴퓨터의 숫자({0})과 유저의 숫자({1}) 일부만 볼")
-    @CsvSource(value = {"152:217:2", "9184:1867:2", "491:156:1"}, delimiter = ':')
-    void 결과가_볼이_일부만_있는_경우(String computerNumber, String userNumber, int ballCount) {
+    @MethodSource("결과가_볼_일부만_있는_경우_파라미터")
+    void 결과가_볼_일부만_있는_경우(List<Integer> computerNumber, List<Integer> userNumber, int ballCount) {
         BaseballCounter counter = BaseballCounter.create(computerNumber);
         counter.count(userNumber);
 
@@ -93,9 +105,17 @@ class BaseballCounterTest {
         );
     }
 
+    private static Stream<Arguments> 결과가_볼_일부만_있는_경우_파라미터() {
+        return Stream.of(
+                Arguments.of(Arrays.asList(1, 5, 2), Arrays.asList(2, 1, 7), 2),
+                Arguments.of(Arrays.asList(9, 1, 8, 4), Arrays.asList(1, 8, 6, 7), 2),
+                Arguments.of(Arrays.asList(4, 9, 1), Arrays.asList(1, 5, 6), 1)
+        );
+    }
+
     @ParameterizedTest(name = "컴퓨터의 숫자({0})과 유저의 숫자({1}) 스트라이크, 볼")
-    @CsvSource(value = {"152:125:1:2", "9184:1784:2:1", "491:418:1:1"}, delimiter = ':')
-    void 결과가_스트라이크_볼_함께_있는_경우(String computerNumber, String userNumber, int strikeCount, int ballCount) {
+    @MethodSource("결과가_스트라이크_볼_함께_있는_경우_파라미터")
+    void 결과가_스트라이크_볼_함께_있는_경우(List<Integer> computerNumber, List<Integer> userNumber, int strikeCount, int ballCount) {
         BaseballCounter counter = BaseballCounter.create(computerNumber);
         counter.count(userNumber);
 
@@ -107,9 +127,17 @@ class BaseballCounterTest {
         );
     }
 
+    private static Stream<Arguments> 결과가_스트라이크_볼_함께_있는_경우_파라미터() {
+        return Stream.of(
+                Arguments.of(Arrays.asList(1, 5, 2), Arrays.asList(1, 2, 5), 1, 2),
+                Arguments.of(Arrays.asList(9, 1, 8, 4), Arrays.asList(1, 7, 8, 4), 2, 1),
+                Arguments.of(Arrays.asList(4, 9, 1), Arrays.asList(4, 1, 8), 1, 1)
+        );
+    }
+
     @ParameterizedTest(name = "컴퓨터의 숫자({0})과 유저의 숫자({1}) 낫싱")
-    @CsvSource(value = {"152:987", "9184:2365", "491:257"}, delimiter = ':')
-    void 결과가_낫싱일_경우(String computerNumber, String userNumber) {
+    @MethodSource("결과가_낫싱인_경우_파라미터")
+    void 결과가_낫싱인_경우(List<Integer> computerNumber, List<Integer> userNumber) {
         BaseballCounter counter = BaseballCounter.create(computerNumber);
         counter.count(userNumber);
 
@@ -121,4 +149,11 @@ class BaseballCounterTest {
         );
     }
 
+    private static Stream<Arguments> 결과가_낫싱인_경우_파라미터() {
+        return Stream.of(
+                Arguments.of(Arrays.asList(1, 5, 2), Arrays.asList(9, 8, 7)),
+                Arguments.of(Arrays.asList(9, 1, 8, 4), Arrays.asList(2, 3, 6, 5)),
+                Arguments.of(Arrays.asList(4, 9, 1), Arrays.asList(2, 5, 7))
+        );
+    }
 }

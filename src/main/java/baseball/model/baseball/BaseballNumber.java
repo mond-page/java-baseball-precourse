@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Set;
 
 public class BaseballNumber {
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 9;
     private List<Integer> numbers;
 
     private BaseballNumber() {
@@ -32,7 +30,7 @@ public class BaseballNumber {
     private int pickNumber() {
         int number;
         do {
-            number = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
+            number = Randoms.pickNumberInRange(BaseballOption.MIN_NUMBER, BaseballOption.MAX_NUMBER);
         } while (isValidateNumber(number));
 
         return number;
@@ -44,9 +42,9 @@ public class BaseballNumber {
     }
 
     private void checkDuplicateNumber(String number) {
-        Set<Character> numberSet = new HashSet<>();
+        Set<Integer> numberSet = new HashSet<>();
         for (char digitNumber : number.toCharArray()) {
-            numberSet.add(digitNumber);
+            numberSet.add(Character.getNumericValue(digitNumber));
         }
 
         if (number.length() != numberSet.size()) {
@@ -60,10 +58,8 @@ public class BaseballNumber {
         }
     }
 
-    public String getNumber() {
-        StringBuilder builder = new StringBuilder();
-        numbers.forEach(builder::append);
-        return builder.toString();
+    public List<Integer> getNumber() {
+        return numbers;
     }
 
     private boolean isValidateNumber(int number) {
@@ -75,6 +71,6 @@ public class BaseballNumber {
     }
 
     private boolean isOutOfBoundNumber(int number) {
-        return number > MAX_NUMBER || number < MIN_NUMBER;
+        return number > BaseballOption.MAX_NUMBER || number < BaseballOption.MIN_NUMBER;
     }
 }
