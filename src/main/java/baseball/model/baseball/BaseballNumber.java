@@ -36,6 +36,10 @@ public class BaseballNumber {
         return number;
     }
 
+    public List<Integer> getNumber() {
+        return numbers;
+    }
+
     public void validate(String inputNumber) {
         validateFormatNumber(inputNumber);
         validateDuplicateNumber(inputNumber);
@@ -56,10 +60,6 @@ public class BaseballNumber {
         if (!number.matches(BaseballOption.DIGIT_NUMBER_PATTERN)) {
             throw new IllegalArgumentException(BaseballMessage.INVALID_NUMBER_FORMAT);
         }
-    }
-
-    public List<Integer> getNumber() {
-        return numbers;
     }
 
     private boolean isValidateNumber(int number) {

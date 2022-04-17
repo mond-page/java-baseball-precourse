@@ -18,6 +18,10 @@ public class Baseball {
         return new Baseball();
     }
 
+    public void validateNumber(String inputNumber) {
+        baseballNumber.validate(inputNumber);
+    }
+
     public void count(String inputNumber) {
         baseballCounter = BaseballCounter.create(baseballNumber.getNumber());
         baseballCounter.count(convertStringNumberToList(inputNumber));
@@ -29,10 +33,6 @@ public class Baseball {
 
     public boolean isAnswer() {
         return baseballCounter != null && baseballCounter.isAllStrike();
-    }
-
-    public void validateNumber(String inputNumber) {
-        baseballNumber.validate(inputNumber);
     }
 
     private void validateDigitNumberLength() {
