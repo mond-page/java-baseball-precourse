@@ -45,7 +45,7 @@ public class GameMachine {
     }
 
     private void validateInputNumber(String inputNumber) {
-        baseball.validate(inputNumber);
+        baseball.validateNumber(inputNumber);
     }
 
     private void validateGameStateNumber(String gameStateNumber) {

@@ -31,7 +31,7 @@ public class Baseball {
         return baseballCounter != null && baseballCounter.isAllStrike();
     }
 
-    public void validate(String inputNumber) {
+    public void validateNumber(String inputNumber) {
         baseballNumber.validate(inputNumber);
     }
 

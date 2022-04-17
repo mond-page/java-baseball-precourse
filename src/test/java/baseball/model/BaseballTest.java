@@ -27,7 +27,7 @@ class BaseballTest {
     @ParameterizedTest(name = "숫자포맷이 맞지 않는 값({0})은 에러 발생")
     @ValueSource(strings = {"5197", " 232", "테스트", "902", "", "test", "-251", "+193"})
     void 숫자포맷이_올바르지_않는_경우(String invalidNumber) {
-        assertThatThrownBy(() -> baseball.validate(invalidNumber))
+        assertThatThrownBy(() -> baseball.validateNumber(invalidNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(BaseballMessage.INVALID_NUMBER_FORMAT);
     }
@@ -37,7 +37,7 @@ class BaseballTest {
         String duplicateNumber = "155";
 
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> baseball.validate(duplicateNumber))
+                .isThrownBy(() -> baseball.validateNumber(duplicateNumber))
                 .withMessage(BaseballMessage.DUPLICATE_DIGIT_NUMBER);
     }
 

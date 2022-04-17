@@ -37,11 +37,11 @@ public class BaseballNumber {
     }
 
     public void validate(String inputNumber) {
-        checkFormatNumber(inputNumber);
-        checkDuplicateNumber(inputNumber);
+        validateFormatNumber(inputNumber);
+        validateDuplicateNumber(inputNumber);
     }
 
-    private void checkDuplicateNumber(String number) {
+    private void validateDuplicateNumber(String number) {
         Set<Integer> numberSet = new HashSet<>();
         for (char digitNumber : number.toCharArray()) {
             numberSet.add(Character.getNumericValue(digitNumber));
@@ -52,7 +52,7 @@ public class BaseballNumber {
         }
     }
 
-    private void checkFormatNumber(String number) {
+    private void validateFormatNumber(String number) {
         if (!number.matches(BaseballOption.DIGIT_NUMBER_PATTERN)) {
             throw new IllegalArgumentException(BaseballMessage.INVALID_NUMBER_FORMAT);
         }
