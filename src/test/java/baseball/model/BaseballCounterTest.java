@@ -33,6 +33,7 @@ class BaseballCounterTest {
                 () -> assertThat(computerNumber).isEqualTo(userNumber),
                 () -> assertThat(counter.getStrike()).isEqualTo(strikeCount),
                 () -> assertThat(counter.getBall()).isZero(),
+                () -> assertThat(counter.isAllStrike()).isTrue(),
                 () -> assertThat(counter.isStrike()).isTrue(),
                 () -> assertThat(counter.isBall()).isFalse()
         );
@@ -56,6 +57,7 @@ class BaseballCounterTest {
                 () -> assertThat(computerNumber).isNotEqualTo(userNumber),
                 () -> assertThat(counter.getBall()).isEqualTo(ballCount),
                 () -> assertThat(counter.getStrike()).isZero(),
+                () -> assertThat(counter.isAllStrike()).isFalse(),
                 () -> assertThat(counter.isStrike()).isFalse(),
                 () -> assertThat(counter.isBall()).isTrue()
         );
@@ -78,6 +80,7 @@ class BaseballCounterTest {
         assertAll(
                 () -> assertThat(counter.getStrike()).isEqualTo(strikeCount),
                 () -> assertThat(counter.getBall()).isZero(),
+                () -> assertThat(counter.isAllStrike()).isFalse(),
                 () -> assertThat(counter.isStrike()).isTrue(),
                 () -> assertThat(counter.isBall()).isFalse()
         );
@@ -100,6 +103,7 @@ class BaseballCounterTest {
         assertAll(
                 () -> assertThat(counter.getBall()).isEqualTo(ballCount),
                 () -> assertThat(counter.getStrike()).isZero(),
+                () -> assertThat(counter.isAllStrike()).isFalse(),
                 () -> assertThat(counter.isStrike()).isFalse(),
                 () -> assertThat(counter.isBall()).isTrue()
         );
@@ -122,6 +126,7 @@ class BaseballCounterTest {
         assertAll(
                 () -> assertThat(counter.getStrike()).isEqualTo(strikeCount),
                 () -> assertThat(counter.getBall()).isEqualTo(ballCount),
+                () -> assertThat(counter.isAllStrike()).isFalse(),
                 () -> assertThat(counter.isStrike()).isTrue(),
                 () -> assertThat(counter.isBall()).isTrue()
         );
@@ -144,6 +149,7 @@ class BaseballCounterTest {
         assertAll(
                 () -> assertThat(counter.getStrike()).isZero(),
                 () -> assertThat(counter.getBall()).isZero(),
+                () -> assertThat(counter.isAllStrike()).isFalse(),
                 () -> assertThat(counter.isStrike()).isFalse(),
                 () -> assertThat(counter.isBall()).isFalse()
         );

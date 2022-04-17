@@ -1,6 +1,5 @@
 package baseball.model.baseball;
 
-import baseball.constants.baseball.BaseballOption;
 import java.util.List;
 
 public class BaseballCounter {
@@ -62,6 +61,6 @@ public class BaseballCounter {
     }
 
     public boolean isAllStrike() {
-        return strike == BaseballOption.DIGIT_NUMBER_LENGTH;
+        return strike == computerNumber.size();
     }
 }
