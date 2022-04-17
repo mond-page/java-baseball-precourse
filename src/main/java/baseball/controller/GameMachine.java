@@ -34,7 +34,8 @@ public class GameMachine {
         monitor.printGameChoice();
         String gameStateNumber = Console.readLine();
         validateGameStateNumber(gameStateNumber);
-        if (Integer.parseInt(gameStateNumber) == GameMachineState.RESTART.getCode()) {
+
+        if (GameMachineState.findByCode(gameStateNumber) == GameMachineState.RESTART) {
             start();
         }
     }
@@ -49,11 +50,8 @@ public class GameMachine {
     }
 
     private void validateGameStateNumber(String gameStateNumber) {
-        String restartCode = String.valueOf(GameMachineState.RESTART.getCode());
-        String terminateCode = String.valueOf(GameMachineState.TERMINATE.getCode());
-
-        if (!restartCode.matches(gameStateNumber) && !terminateCode.matches(gameStateNumber)) {
-            throw new IllegalArgumentException(GameMachineMessage.INVALID_NUMBER_FORMAT);
+        if (GameMachineState.findByCode(gameStateNumber) == GameMachineState.UNKNOWN) {
+            throw new IllegalArgumentException(GameMachineMessage.INVALID_CODE_FORMAT);
         }
     }
 

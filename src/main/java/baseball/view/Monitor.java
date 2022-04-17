@@ -11,7 +11,7 @@ public class Monitor {
     private static final String RESULT_NOTHING_MESSAGE = "낫싱";
     private static final String INPUT_NUMBER_MESSAGE = "숫자를 입력해 주세요.";
     private static final String GAME_VICTORY_MESSAGE = "%d개의 숫자를 모두 맞히셨습니다! 게임 종료";
-    private static final String GAME_CHOICE_MESSAGE = "게임을 새로 시작하려면 %d, 종료하려면 %d를 입력하세요.";
+    private static final String GAME_CHOICE_MESSAGE = "게임을 새로 시작하려면 %s, 종료하려면 %s를 입력하세요.";
 
     private String message;
 
